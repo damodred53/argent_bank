@@ -7,9 +7,9 @@ const Banner  = () => {
             <article className="banner_article">
 
                 <div className="banner_article_quotes">
-                    <quote>No fees.</quote>
-                    <quote>No minimum deposit.</quote>
-                    <quote>High interest rates.</quote>
+                    <p>No fees.</p>
+                    <p>No minimum deposit.</p>
+                    <p>High interest rates.</p>
                 </div>
 
                 <div className="banner_article_paragraph">
