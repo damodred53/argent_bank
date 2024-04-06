@@ -29,6 +29,10 @@
             cursor: pointer;
             font-size: 22px;
         }
+
+        &_link:hover {
+            text-decoration: underline;
+        }
     }
 
     

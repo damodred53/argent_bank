@@ -1,0 +1,9 @@
+
+
+.slogan {
+    @include flex_row_around;
+    display: flex;
+    height: 25rem;
+    width: 100%;
+    padding-bottom: 2rem;
+}

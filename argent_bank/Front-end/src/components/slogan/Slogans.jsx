@@ -33,9 +33,10 @@ const Slogans = () => {
 
 
     return (
-        <div>{data && data.length > 0 && (data.map((item, index) => {
+        <div className="slogan">{data && data.length > 0 && (data.map((item, index) => {
             return <CardsLandingPages key={index} index={index} data={item} pictures={pictures} />
-}))}</div>
+        }))}
+        </div>
 
     )
 }
