@@ -1,0 +1,36 @@
+@import url('https://fonts.cdnfonts.com/css/avenir');
+
+.header {
+    @include flex_row_between;
+    height: 5rem;
+    padding-left: 2rem;
+
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+
+    &_logo {
+        width: 15rem;
+    }
+    
+    
+    &_div {
+        @include flex_row_center;
+        display: flex;
+        width: 10%;
+        column-gap: 1rem;
+
+        &_image {
+            max-width: 2rem;
+            max-height: 2rem;
+        }
+
+        &_link {
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 22px;
+        }
+    }
+
+    
+
+}
