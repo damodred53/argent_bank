@@ -4,6 +4,7 @@ import './App.css';
 import Slogan from './components/slogan/Slogans.jsx';
 import Footer from './components/footer/Footer.jsx';
 
+
 function App() {
   return (
     <div className="App">
