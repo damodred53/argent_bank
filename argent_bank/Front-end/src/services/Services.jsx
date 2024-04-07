@@ -1,4 +1,4 @@
-export const getDataLandingPage = async () => {
+const getDataLandingPage = async () => {
     try {
         const response = await fetch("./dataBaseLandPage.json"); // Utilisez le chemin vers le fichier JSON
         if (response.ok) {
@@ -14,8 +14,24 @@ export const getDataLandingPage = async () => {
     }
 }
 
-const ServicesToExport = {
-    getDataLandingPage
+
+
+const getDataBankAccount = async () => {
+    try {
+        const response = fetch('./dataBase/dataBaseBankAccount.json')
+        if (response) {
+            const data = await (await response).json()
+            return data
+        }
+
+    } catch (error) {
+        console.log('impossible d\'afficher les données bancaires de l\'utilisateur', error)
+    }
+}
+
+const AllServices = {
+    getDataLandingPage,
+    getDataBankAccount
 };
 
-export default ServicesToExport;
+export default AllServices;

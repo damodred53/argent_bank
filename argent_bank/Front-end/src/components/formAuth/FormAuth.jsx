@@ -1,11 +1,9 @@
 
 import React from "react";
 import Utilisateur from "../../assets/utilisateur.svg";
+import Button from "../button/Button";
 
 const FormAuthentification = () => {
-
-
-
 
     return (
         <section className="form_area">
@@ -30,7 +28,7 @@ const FormAuthentification = () => {
                         <label className="form_div_wrapper_checkbox">Remember me</label>
                     </div>
 
-                    <button className="form_button">Sign In</button>
+                    <Button textContent='Sign In' className="form_button" />
 
                 </div>
             </form>

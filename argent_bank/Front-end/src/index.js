@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Authentification from './pages/Authentification';
+import UserPage from './pages/UserPage';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +14,8 @@ root.render(
     <Router>
       <Routes>
         <Route path='/' element={<App />}></Route>
-        <Route path="/login" element={<Authentification/> }></Route>
+        <Route path="/login" element={<Authentification /> }></Route>
+        <Route path='/profile' element={<UserPage />}></Route>
       </Routes>
     </Router>
   </React.StrictMode>
