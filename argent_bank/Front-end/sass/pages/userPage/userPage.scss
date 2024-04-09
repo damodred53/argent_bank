@@ -62,6 +62,8 @@
                 width: 20rem;
                 border-radius: 5px;
                 border: grey 5px solid;
+                color: grey;
+                font-size: 1.5rem;
             }
 
             &_buttons {
@@ -81,6 +83,7 @@
                     border: #7754de 2px solid;
                     color: #7754de;
                     font-size: 1.2rem;
+                    cursor: pointer;
                 }
                 
             }

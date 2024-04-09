@@ -2,7 +2,7 @@ import React from "react";
 
 const CardsLandingPages = ({index, data, pictures}) => {
 
-    console.log(data)
+
     return (
         <article className="cardLandingPage">
             <img className="cardLandingPage_icon" src={pictures[index]} alt={data.title} />

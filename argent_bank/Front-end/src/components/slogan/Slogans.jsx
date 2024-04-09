@@ -7,9 +7,6 @@ import Dialogue from "../../assets/icon-chat.png";
 import Billet from "../../assets/icon-money.png";
 import Bouclier from "../../assets/icon-security.png";
 
-
-
-
 const Slogans = () => {
 
     const [data, setData] = useState([]);
@@ -23,13 +20,18 @@ const Slogans = () => {
                 const response = await ServicesToExport.getDataLandingPage();
                 setData(response)
                 setPictures([Dialogue, Billet, Bouclier])
+                console.log('autre prout')
+
             } catch (error) {
                 console.log('impossible d\'afficher les données de la page d\'accueil', error);
             }
+        
         }
-
         fetchData()
+
 }, [])
+
+
 
 
     return (

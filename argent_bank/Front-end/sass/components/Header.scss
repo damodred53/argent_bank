@@ -15,12 +15,22 @@
     &_div {
         @include flex_row_center;
         display: flex;
-        width: 10%;
         column-gap: 1rem;
+        margin-right: 2rem;
+        &_signout {
+            padding-right: 1rem;
+            display: flex;
+            column-gap: 1rem;
+            align-items: center;
+            font-size: 22px;
+            font-weight: bold;
+            &_icon {
+                width: 1rem;
+            }
+        }
 
         &_image {
-            max-width: 2rem;
-            max-height: 2rem;
+            width: 1rem;
         }
 
         &_link {
@@ -28,6 +38,7 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 22px;
+            color: black;
         }
 
         &_link:hover {

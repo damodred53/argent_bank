@@ -6,7 +6,9 @@ import AllServices from "../../../services/Services";
 
 const WelcomingUser = () => {
     const [accounts, setAccounts] = useState([]);
-    const [appearrance, setAppearance] = useState(true)
+    const [appearrance, setAppearance] = useState(true);
+    const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
 
 
     const toggleEditName = () => {
@@ -21,6 +23,36 @@ const WelcomingUser = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
     }
+
+
+    useEffect(() => {
+
+        const getNameUser = async () => {
+    
+            try {
+                const getUserToken = localStorage.getItem('token')
+                console.log('et voilà le token :', getUserToken);
+
+                const response2 = await fetch('http://localhost:3001/api/v1/user/profile', {
+                    method : "POST",
+                    headers : {
+                        'Authorization': `Bearer ${getUserToken}`
+                    }
+                });
+                
+                if(response2) {
+                    const data = await response2.json()
+                    console.log(data)
+                    setName(data.body.firstName)
+                    setLastName(data.body.lastName)
+                }
+    
+            } catch (error) {
+                console.log('impossible d\'afficher les noms et prénoms de l\'utilisateur', error);
+            }
+        }
+        getNameUser()
+    }, [])
     
 
     useEffect(() => {
@@ -34,11 +66,15 @@ const WelcomingUser = () => {
         fetchData();
     }, []);
 
+
+    console.log(name)
+    console.log(lastName)
+
     return (
         <section className="userpage">
             <div className="userpage_div">
                 <h1 className="userpage_div_title">Welcome Back</h1>
-                <h1 className="userpage_div_title"></h1>
+                <h1 className="userpage_div_title">{name} {lastName}</h1>
                 
                     {appearrance ? 
                     <span className="test_span" onClick={toggleEditName}>
@@ -53,12 +89,11 @@ const WelcomingUser = () => {
                         </div>
                         <div className="form_edit_part_div_buttons">
                             <Button className="form_edit_part_div_buttons" textContent="Save" />
-                            <Button className="form_edit_part_div_buttons" textContent="Cancel" />
+                            <span className="test_span" onClick={toggleEditName}>
+                                <Button className="form_edit_part_div_buttons" textContent="Cancel" />
+                            </span>
                         </div>
                     </form>
-                    <span className="test_span" onClick={toggleEditName}>
-                        <Button textContent="Edit Name" className="userpage_div_button" />
-                    </span>
                     </div>
                     
                     }

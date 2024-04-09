@@ -1,6 +1,6 @@
-const User = require('../database/models/userModel')
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const User = require('../database/models/userModel');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 module.exports.createUser = async serviceData => {
   try {
