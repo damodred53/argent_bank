@@ -8,6 +8,7 @@ import Signout from "../../assets/sign_out.svg";
 const Header = () => {
 
     const [ isProfilURL, setIsProfileUrl ] = useState(false);
+    const [ nameUser, setNameUser ] = useState('');
 
     const location = useLocation();
 
@@ -25,9 +26,42 @@ const Header = () => {
 
             }
 
+            const getUserName = async () => {
+
+                if (localStorage.getItem('token') === null) {
+                    return
+                } else {
+
+
+                    const getUserToken = localStorage.getItem('token');
+                console.log(getUserToken)
+                const getName = await fetch('http://localhost:3001/api/v1/user/profile', {
+                    
+                    method : "POST",
+                    headers : {
+                        'Authorization': `Bearer ${getUserToken}`
+                    }
+                    
+                })
+                if (getName) {
+                    const data = await getName.json()
+                    console.log(data)
+                    setNameUser(data.body.firstName)
+
+                }
+
+                }
+                
+            }
+
             checkUrl()
+            getUserName()
     }, [isProfilURL])
 
+    const handleRemoveToken = () => {
+
+        localStorage.removeItem('token')
+    }
     
 
     return (
@@ -40,10 +74,12 @@ const Header = () => {
                 
                 {isProfilURL ? 
                 <div className="header_div_signout">
-                    <span>John</span>
+                    <span>{nameUser}</span>
                     <div className="header_div_signout">
                         <img className="header_div_signout_icon" src={Signout} alt="icone de déconnexion" /> 
-                        <p className="header_div_link"><Link style={{ textDecoration: 'none' }} to="/">Sign out</Link></p>
+                        <span onClick={handleRemoveToken}>
+                            <p className="header_div_link"><Link style={{ textDecoration: 'none' }} to="/">Sign out</Link></p>
+                        </span>
                     </div>
                 </div>
                 :

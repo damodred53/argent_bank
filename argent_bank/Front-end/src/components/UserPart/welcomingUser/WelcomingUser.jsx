@@ -9,10 +9,12 @@ const WelcomingUser = () => {
     const [appearrance, setAppearance] = useState(true);
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [newName, setNewName] = useState('')
+    const [newLastName, setNewLastName] = useState('')
 
 
-    const toggleEditName = () => {
-        
+    const toggleEditName = (e) => {
+        e.preventDefault()
         if (appearrance ) {
             setAppearance(!appearrance)
         } else {
@@ -31,7 +33,6 @@ const WelcomingUser = () => {
     
             try {
                 const getUserToken = localStorage.getItem('token')
-                console.log('et voilà le token :', getUserToken);
 
                 const response2 = await fetch('http://localhost:3001/api/v1/user/profile', {
                     method : "POST",
@@ -41,8 +42,9 @@ const WelcomingUser = () => {
                 });
                 
                 if(response2) {
+                    setName('')
+                    setLastName('')
                     const data = await response2.json()
-                    console.log(data)
                     setName(data.body.firstName)
                     setLastName(data.body.lastName)
                 }
@@ -52,7 +54,7 @@ const WelcomingUser = () => {
             }
         }
         getNameUser()
-    }, [])
+    }, [newName, newLastName])
     
 
     useEffect(() => {
@@ -66,9 +68,38 @@ const WelcomingUser = () => {
         fetchData();
     }, []);
 
+    const handleChangeName = async (e) => {
 
-    console.log(name)
-    console.log(lastName)
+        e.preventDefault();
+
+        const newName = document.querySelector('#newname').value;
+        const newLastName = document.querySelector('#newlastname').value;
+
+        /*console.log('voici le nouveau nom : ', newName)
+        console.log('voici le nouveau nom de famille :', newLastName);*/
+
+        const getUserToken = localStorage.getItem('token')
+        console.log(getUserToken)
+
+        const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+            method: "PUT",
+            headers: {
+                'Content-type' : 'application/json',
+                'Authorization': `Bearer ${getUserToken}`
+            },
+            body: JSON.stringify({
+                firstName : newName,
+                lastName : newLastName
+            }) 
+        })
+        
+        setNewName(newName);
+        setNewLastName(newLastName);
+        
+    }
+
+
+
 
     return (
         <section className="userpage">
@@ -84,13 +115,15 @@ const WelcomingUser = () => {
                     <div className="form_edit">
                     <form className="form_edit_part" onSubmit={handleSubmit}>
                         <div className="form_edit_part_div">
-                            <input className="form_edit_part_div_input" type="text" />
-                            <input className="form_edit_part_div_input" type="text" />
+                            <input className="form_edit_part_div_input" id="newname" type="text" />
+                            <input className="form_edit_part_div_input" id="newlastname" type="text" />
                         </div>
                         <div className="form_edit_part_div_buttons">
-                            <Button className="form_edit_part_div_buttons" textContent="Save" />
-                            <span className="test_span" onClick={toggleEditName}>
-                                <Button className="form_edit_part_div_buttons" textContent="Cancel" />
+                            <span onClick={(e) => handleChangeName(e)}>
+                                <Button className="form_edit_part_div_buttons" textContent="Save"  />
+                            </span>
+                            <span className="test_span" onClick={(e) => toggleEditName(e)}>
+                                <Button className="form_edit_part_div_buttons"  textContent="Cancel" />
                             </span>
                         </div>
                     </form>

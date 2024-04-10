@@ -29,9 +29,26 @@ const getDataBankAccount = async () => {
     }
 }
 
+export const loginUser = async (data) => {
+
+    const postData = await fetch('http://localhost:3001/api/v1/user/login', {
+            method : "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email : data.email,
+                password: data.password
+            })
+        });
+
+        return postData;
+}
+
 const AllServices = {
     getDataLandingPage,
-    getDataBankAccount
+    getDataBankAccount,
+    loginUser
 };
 
 export default AllServices;
