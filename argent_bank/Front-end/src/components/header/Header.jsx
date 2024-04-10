@@ -4,6 +4,7 @@ import argentBankLogo from "../../assets/argentBank.png";
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from "react"
 import Signout from "../../assets/sign_out.svg";
+import Services from "../../services/Services?jsx";
 
 const Header = () => {
 
@@ -26,30 +27,19 @@ const Header = () => {
 
             }
 
+            
+
             const getUserName = async () => {
 
                 if (localStorage.getItem('token') === null) {
                     return
                 } else {
 
+                    const fetchDataUser = await Services.getUser()
 
-                    const getUserToken = localStorage.getItem('token');
-                console.log(getUserToken)
-                const getName = await fetch('http://localhost:3001/api/v1/user/profile', {
-                    
-                    method : "POST",
-                    headers : {
-                        'Authorization': `Bearer ${getUserToken}`
-                    }
-                    
-                })
-                if (getName) {
-                    const data = await getName.json()
-                    console.log(data)
-                    setNameUser(data.body.firstName)
-
+                if (fetchDataUser) {
+                    setNameUser(fetchDataUser.body.firstName)
                 }
-
                 }
                 
             }

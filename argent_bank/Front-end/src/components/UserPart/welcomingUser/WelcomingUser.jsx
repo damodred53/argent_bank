@@ -75,11 +75,8 @@ const WelcomingUser = () => {
         const newName = document.querySelector('#newname').value;
         const newLastName = document.querySelector('#newlastname').value;
 
-        /*console.log('voici le nouveau nom : ', newName)
-        console.log('voici le nouveau nom de famille :', newLastName);*/
-
         const getUserToken = localStorage.getItem('token')
-        console.log(getUserToken)
+
 
         const response = await fetch('http://localhost:3001/api/v1/user/profile', {
             method: "PUT",

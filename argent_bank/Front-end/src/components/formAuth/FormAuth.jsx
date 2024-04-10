@@ -2,7 +2,6 @@
 import React from "react";
 import Utilisateur from "../../assets/utilisateur.svg";
 import Button from "../button/Button";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Services from "../../services/Services.jsx";
 
@@ -13,8 +12,7 @@ const FormAuthentification = () => {
 
     const handleSubmit = async (e) => {
 
-
-    e.preventDefault();
+        e.preventDefault();
 
         const formData= {}
     
@@ -26,17 +24,15 @@ const FormAuthentification = () => {
 
         const postData = await Services.loginUser(formData)
         
-
         const nameError = document.querySelector('.form_div_wrapper_username_error');
         const lastNameError = document.querySelector('.form_div_wrapper_password_error');
-        console.log(postData)
+
         if (postData.ok) {
 
             if (nameError.style.display === "block" || lastNameError.style.display === "block") {
                 nameError.style.display = "none";
                 lastNameError.style.display = "none";
             }
-            
             const data = await postData.json();
             localStorage.setItem('token', data.body.token)
             navigate('/profile')

@@ -29,9 +29,11 @@ const getDataBankAccount = async () => {
     }
 }
 
-export const loginUser = async (data) => {
+const loginUser = async (data) => {
 
-    const postData = await fetch('http://localhost:3001/api/v1/user/login', {
+    try {
+
+        const postData = await fetch('http://localhost:3001/api/v1/user/login', {
             method : "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -43,12 +45,33 @@ export const loginUser = async (data) => {
         });
 
         return postData;
+
+    } catch (error) {
+        console.log('Impossible d\'envoyer les identifiants de l\'utilisateur', error);
+    }
+}
+
+const getUser = async (data) => {
+
+    const getUserToken = localStorage.getItem('token');
+
+    const getUser = await fetch('http://localhost:3001/api/v1/user/profile', {
+        
+        method : "POST",
+        headers : {
+            'Authorization': `Bearer ${getUserToken}`
+        }
+        
+    })
+
+    return await getUser.json()
 }
 
 const AllServices = {
     getDataLandingPage,
     getDataBankAccount,
-    loginUser
+    loginUser,
+    getUser
 };
 
 export default AllServices;
