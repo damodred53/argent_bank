@@ -19,15 +19,10 @@ const Header = () => {
 
                 if (location.pathname.includes('/profile')) {
                     setIsProfileUrl(true)
-
                 } else {
                     setIsProfileUrl(false)
-
                 }
-
             }
-
-            
 
             const getUserName = async () => {
 
@@ -49,11 +44,9 @@ const Header = () => {
     }, [isProfilURL])
 
     const handleRemoveToken = () => {
-
         localStorage.removeItem('token')
     }
     
-
     return (
 
         <section className="header">
@@ -74,11 +67,9 @@ const Header = () => {
                 </div>
                 :
                     <p className="header_div_link"><Link style={{ textDecoration: 'none' }} to="/login">Sign in</Link></p>
-                
                 }
                 
             </div>
-
         </section>
 
     )

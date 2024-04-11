@@ -67,11 +67,31 @@ const getUser = async (data) => {
     return await getUser.json()
 }
 
+const updateUser = async (newName, newLastName) => {
+
+    const getUserToken = localStorage.getItem('token')
+
+        const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+            method: "PUT",
+            headers: {
+                'Content-type' : 'application/json',
+                'Authorization': `Bearer ${getUserToken}`
+            },
+            body: JSON.stringify({
+                firstName : newName,
+                lastName : newLastName
+            }) 
+        })
+
+}
+
 const AllServices = {
     getDataLandingPage,
     getDataBankAccount,
     loginUser,
-    getUser
+    getUser,
+    updateUser
+    
 };
 
 export default AllServices;

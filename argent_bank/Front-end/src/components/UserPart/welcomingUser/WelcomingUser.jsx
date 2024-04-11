@@ -3,7 +3,6 @@ import Button from "../../button/Button";
 import AccountView from "../accountView/AccountView";
 import AllServices from "../../../services/Services";
 
-
 const WelcomingUser = () => {
     const [accounts, setAccounts] = useState([]);
     const [appearrance, setAppearance] = useState(true);
@@ -11,7 +10,6 @@ const WelcomingUser = () => {
     const [lastName, setLastName] = useState('');
     const [newName, setNewName] = useState('')
     const [newLastName, setNewLastName] = useState('')
-
 
     const toggleEditName = (e) => {
         e.preventDefault()
@@ -26,29 +24,19 @@ const WelcomingUser = () => {
         e.preventDefault()
     }
 
-
     useEffect(() => {
 
         const getNameUser = async () => {
     
             try {
-                const getUserToken = localStorage.getItem('token')
-
-                const response2 = await fetch('http://localhost:3001/api/v1/user/profile', {
-                    method : "POST",
-                    headers : {
-                        'Authorization': `Bearer ${getUserToken}`
-                    }
-                });
-                
-                if(response2) {
+                const response = await AllServices.getUser()
+                if(response) {
                     setName('')
                     setLastName('')
-                    const data = await response2.json()
+                    const data = response
                     setName(data.body.firstName)
                     setLastName(data.body.lastName)
                 }
-    
             } catch (error) {
                 console.log('impossible d\'afficher les noms et prénoms de l\'utilisateur', error);
             }
@@ -64,38 +52,18 @@ const WelcomingUser = () => {
                setAccounts(response)
             }
         };
-
         fetchData();
     }, []);
 
     const handleChangeName = async (e) => {
 
         e.preventDefault();
-
         const newName = document.querySelector('#newname').value;
         const newLastName = document.querySelector('#newlastname').value;
-
-        const getUserToken = localStorage.getItem('token')
-
-
-        const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-            method: "PUT",
-            headers: {
-                'Content-type' : 'application/json',
-                'Authorization': `Bearer ${getUserToken}`
-            },
-            body: JSON.stringify({
-                firstName : newName,
-                lastName : newLastName
-            }) 
-        })
-        
+        AllServices.updateUser(newName, newLastName)
         setNewName(newName);
         setNewLastName(newLastName);
-        
     }
-
-
 
 
     return (
@@ -125,10 +93,7 @@ const WelcomingUser = () => {
                         </div>
                     </form>
                     </div>
-                    
                     }
-                    
-                
                 <div className="userpage_div_wrapper">
                     {accounts.map((item, index) => {
                         return <AccountView content={item} index={index} key={index}/>
