@@ -61,7 +61,6 @@ const getUser = async (data) => {
         headers : {
             'Authorization': `Bearer ${getUserToken}`
         }
-        
     })
 
     return await getUser.json()

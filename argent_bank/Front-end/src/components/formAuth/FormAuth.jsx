@@ -9,7 +9,6 @@ const FormAuthentification = () => {
 
     const navigate = useNavigate();
 
-
     const handleSubmit = async (e) => {
 
         e.preventDefault();
@@ -67,11 +66,7 @@ const FormAuthentification = () => {
                         <input className="form_div_wrapper_checkbox" type="checkbox"/>
                         <label className="form_div_wrapper_checkbox">Remember me</label>
                     </div>
-
-                    
                         <Button textContent='Sign In' className="form_button" />
-                    
-
                 </div>
             </form>
         </section>

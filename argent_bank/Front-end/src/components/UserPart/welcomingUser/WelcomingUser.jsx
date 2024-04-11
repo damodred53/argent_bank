@@ -2,26 +2,38 @@ import React, { useState, useEffect } from "react";
 import Button from "../../button/Button";
 import AccountView from "../accountView/AccountView";
 import AllServices from "../../../services/Services";
+import { useSelector, useDispatch } from "react-redux";
+import { addUser, updateUser } from "../../../redux";
 
 const WelcomingUser = () => {
     const [accounts, setAccounts] = useState([]);
     const [appearrance, setAppearance] = useState(true);
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [newName, setNewName] = useState('')
-    const [newLastName, setNewLastName] = useState('')
+    const [newName, setNewName] = useState('');
+    const [newLastName, setNewLastName] = useState('');
+
+    const bankUserName = useSelector(state => state.argent_bank_user);
+        console.log('ceci est le store: ', bankUserName)
+    const dispatch = useDispatch();
 
     const toggleEditName = (e) => {
         e.preventDefault()
-        if (appearrance ) {
-            setAppearance(!appearrance)
-        } else {
-            setAppearance(!appearrance)
-        }
+        setAppearance(!appearrance)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        const newName = document.querySelector('#newname').value;
+        const newLastName = document.querySelector('#newlastname').value;
+        AllServices.updateUser(newName, newLastName)
+        setNewName(newName);
+        setNewLastName(newLastName);
+
+        
+        dispatch(updateUser({firstName: newName, lastName: newLastName }))
+
     }
 
     useEffect(() => {
@@ -30,6 +42,7 @@ const WelcomingUser = () => {
     
             try {
                 const response = await AllServices.getUser()
+                console.log(response)
                 if(response) {
                     setName('')
                     setLastName('')
@@ -55,17 +68,6 @@ const WelcomingUser = () => {
         fetchData();
     }, []);
 
-    const handleChangeName = async (e) => {
-
-        e.preventDefault();
-        const newName = document.querySelector('#newname').value;
-        const newLastName = document.querySelector('#newlastname').value;
-        AllServices.updateUser(newName, newLastName)
-        setNewName(newName);
-        setNewLastName(newLastName);
-    }
-
-
     return (
         <section className="userpage">
             <div className="userpage_div">
@@ -84,8 +86,8 @@ const WelcomingUser = () => {
                             <input className="form_edit_part_div_input" id="newlastname" type="text" />
                         </div>
                         <div className="form_edit_part_div_buttons">
-                            <span onClick={(e) => handleChangeName(e)}>
-                                <Button className="form_edit_part_div_buttons" textContent="Save"  />
+                            <span >
+                                <Button className="form_edit_part_div_buttons" textContent="Save" type="submit" />
                             </span>
                             <span className="test_span" onClick={(e) => toggleEditName(e)}>
                                 <Button className="form_edit_part_div_buttons"  textContent="Cancel" />

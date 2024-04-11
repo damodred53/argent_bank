@@ -5,6 +5,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from "react"
 import Signout from "../../assets/sign_out.svg";
 import Services from "../../services/Services?jsx";
+import { useSelector } from "react-redux";
+
 
 const Header = () => {
 
@@ -12,6 +14,9 @@ const Header = () => {
     const [ nameUser, setNameUser ] = useState('');
 
     const location = useLocation();
+
+    const argentBankUser = useSelector(state => state.argent_bank_user)
+
 
     useEffect(() => {
 
