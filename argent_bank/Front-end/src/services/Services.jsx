@@ -1,3 +1,7 @@
+
+
+
+
 const getDataLandingPage = async () => {
     try {
         const response = await fetch("./dataBaseLandPage.json"); // Utilisez le chemin vers le fichier JSON
@@ -55,7 +59,7 @@ const getUser = async (data) => {
 
     const getUserToken = localStorage.getItem('token');
 
-    const getUser = await fetch('http://localhost:3001/api/v1/user/profile', {
+        const getUser = await fetch('http://localhost:3001/api/v1/user/profile', {
         
         method : "POST",
         headers : {

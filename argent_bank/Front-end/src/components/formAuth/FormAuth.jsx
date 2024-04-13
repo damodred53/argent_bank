@@ -5,7 +5,10 @@ import Button from "../button/Button";
 import { useNavigate } from "react-router-dom";
 import Services from "../../services/Services.jsx";
 
+
 const FormAuthentification = () => {
+
+
 
     const navigate = useNavigate();
 
@@ -34,6 +37,8 @@ const FormAuthentification = () => {
             }
             const data = await postData.json();
             localStorage.setItem('token', data.body.token)
+
+
             navigate('/profile')
         } else {
             nameError.style.display = "block";

@@ -3,19 +3,33 @@ import Button from "../../button/Button";
 import AccountView from "../accountView/AccountView";
 import AllServices from "../../../services/Services";
 import { useSelector, useDispatch } from "react-redux";
-import { addUser, updateUser } from "../../../redux";
+import { addUser, updateUserStore, getBankUser } from "../../../redux";
+import { getDataUsersThunk } from "../../../slice";
+
 
 const WelcomingUser = () => {
     const [accounts, setAccounts] = useState([]);
     const [appearrance, setAppearance] = useState(true);
-    const [name, setName] = useState('');
-    const [lastName, setLastName] = useState('');
+    /*const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');*/
     const [newName, setNewName] = useState('');
     const [newLastName, setNewLastName] = useState('');
 
+    const dispatch = useDispatch()
+
+    let firstName2 = "";
+    let lastName2 = "";
+
     const bankUserName = useSelector(state => state.argent_bank_user);
         console.log('ceci est le store: ', bankUserName)
-    const dispatch = useDispatch();
+
+if (bankUserName) {
+    firstName2 = bankUserName.firstname
+    lastName2 = bankUserName.lastname
+    console.log(firstName2, lastName2)
+} else {
+    console.log('Impossible de récupérer les informations de l\'utilisateur');
+}
 
     const toggleEditName = (e) => {
         e.preventDefault()
@@ -24,38 +38,32 @@ const WelcomingUser = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+    
         const newName = document.querySelector('#newname').value;
         const newLastName = document.querySelector('#newlastname').value;
-        AllServices.updateUser(newName, newLastName)
-        setNewName(newName);
-        setNewLastName(newLastName);
-
         
-        dispatch(updateUser({firstName: newName, lastName: newLastName }))
-
+        dispatch(updateUserStore({ firstName: newName, lastName: newLastName })) 
+        AllServices.updateUser(newName, newLastName);
     }
 
     useEffect(() => {
+
+        /*dispatch(getBankUser())*/
 
         const getNameUser = async () => {
     
             try {
                 const response = await AllServices.getUser()
-                console.log(response)
+
                 if(response) {
-                    setName('')
-                    setLastName('')
-                    const data = response
-                    setName(data.body.firstName)
-                    setLastName(data.body.lastName)
+                    dispatch(getBankUser(response))
                 }
             } catch (error) {
                 console.log('impossible d\'afficher les noms et prénoms de l\'utilisateur', error);
             }
         }
         getNameUser()
-    }, [newName, newLastName])
+    }, [newName, newLastName, dispatch])
     
 
     useEffect(() => {
@@ -72,7 +80,7 @@ const WelcomingUser = () => {
         <section className="userpage">
             <div className="userpage_div">
                 <h1 className="userpage_div_title">Welcome Back</h1>
-                <h1 className="userpage_div_title">{name} {lastName}</h1>
+                <h1 className="userpage_div_title">{firstName2} {lastName2}</h1>
                 
                     {appearrance ? 
                     <span className="test_span" onClick={toggleEditName}>

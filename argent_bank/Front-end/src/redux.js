@@ -1,11 +1,16 @@
 import {configureStore, createSlice } from "@reduxjs/toolkit";
+import { getDataUsersThunk } from "./slice";
+import AllServices from "./services/Services";
+
 
 const userSlice = createSlice({
+    status: "VOID",
     name : "argent_bank_user",
     initialState: 
-        [{
-
-        }],
+        {
+            firstname : "",
+            lastname : ""
+        },
           reducers : {
                 addUser: (state, action) => {
                     
@@ -18,21 +23,34 @@ const userSlice = createSlice({
                     state.push(newUser)
 
                 },
-                updateUser : (state, action) => {
-                    const updatedUser = {
-                        firstName: action.payload.firstName,
-                        lastName : action.payload.lastName
+
+                updateUserStore: (state, action) => {
+                    const { firstName, lastName } = action.payload;
+                    state.status = "modified";
+                    state.firstname = firstName;
+                    state.lastname = lastName;
+                },
+                
+                getBankUser : (state, action) => {
+                    console.log(action)
+                    const user = getDataUsersThunk()
+
+                    return {
+                        
+                        status : "modified",
+                        firstname : action.payload.body.firstName,
+                        lastname : action.payload.body.lastName,
                     }
-                    state.push(updatedUser)
+
                 }
           }
     
 })
 
 export const store = configureStore({
-    reducer: {
-        argent_bank_user : userSlice.reducer
+    reducer: {    
+        argent_bank_user : userSlice.reducer,
     }
 })
 
-export const {addUser, updateUser} = userSlice.actions;
+export const {addUser, updateUserStore, getBankUser} = userSlice.actions;

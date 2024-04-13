@@ -15,8 +15,15 @@ const Header = () => {
 
     const location = useLocation();
 
-    const argentBankUser = useSelector(state => state.argent_bank_user)
+    let firstName3 = ""
 
+    const argentBankUserName = useSelector(state => state.argent_bank_user)
+
+    if (argentBankUserName) {
+        firstName3 = argentBankUserName.firstname
+    } else {
+        console.log('Impossible de récupérer les informations de l\'utilisateur');
+    }
 
     useEffect(() => {
 
@@ -62,7 +69,7 @@ const Header = () => {
                 
                 {isProfilURL ? 
                 <div className="header_div_signout">
-                    <span>{nameUser}</span>
+                    <span>{firstName3}</span>
                     <div className="header_div_signout">
                         <img className="header_div_signout_icon" src={Signout} alt="icone de déconnexion" /> 
                         <span onClick={handleRemoveToken}>
