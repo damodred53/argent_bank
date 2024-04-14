@@ -6,13 +6,19 @@ import CardsLandingPages from "../card/CardsLandingPages.jsx";
 import Dialogue from "../../assets/icon-chat.png";
 import Billet from "../../assets/icon-money.png";
 import Bouclier from "../../assets/icon-security.png";
+import { useSelector } from "react-redux";
 
 const Slogans = () => {
 
     const [data, setData] = useState([]);
     const [pictures, setPictures] = useState([]);
 
+    const argentBankUserName2 = useSelector(state => state.argent_bank_user)
+    console.log(argentBankUserName2)
+
     useEffect(() => {
+
+        
 
         const fetchData = async () => {
 

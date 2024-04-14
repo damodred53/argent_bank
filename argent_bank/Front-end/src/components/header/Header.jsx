@@ -5,7 +5,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from "react"
 import Signout from "../../assets/sign_out.svg";
 import Services from "../../services/Services?jsx";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteUser } from "../../redux";
 
 
 const Header = () => {
@@ -14,6 +15,7 @@ const Header = () => {
     const [ nameUser, setNameUser ] = useState('');
 
     const location = useLocation();
+    const dispatch = useDispatch();
 
     let firstName3 = ""
 
@@ -41,14 +43,11 @@ const Header = () => {
                 if (localStorage.getItem('token') === null) {
                     return
                 } else {
-
                     const fetchDataUser = await Services.getUser()
-
                 if (fetchDataUser) {
                     setNameUser(fetchDataUser.body.firstName)
                 }
                 }
-                
             }
 
             checkUrl()
@@ -56,13 +55,15 @@ const Header = () => {
     }, [isProfilURL])
 
     const handleRemoveToken = () => {
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
+        dispatch(deleteUser({firstname: "", lastname: ""}))
+        
+        console.log("voici le state une fois déconnecté : ", argentBankUserName)
     }
     
     return (
 
         <section className="header">
-
             <img className="header_logo" src={argentBankLogo} alt="logo de la marque argent banque"/>
             <div className="header_div">
                 <img className="header_div_image" src={Utilisateur} alt="icône de connexion" />

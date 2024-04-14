@@ -4,7 +4,7 @@ import AccountView from "../accountView/AccountView";
 import AllServices from "../../../services/Services";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, updateUserStore, getBankUser } from "../../../redux";
-import { getDataUsersThunk } from "../../../slice";
+
 
 
 const WelcomingUser = () => {
