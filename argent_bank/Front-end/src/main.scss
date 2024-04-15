@@ -1,11 +1,10 @@
+//Import des différents fichiers sass afin de faire un seul fichier main qui est 
+//exporter ensuite vers index.js.
 
 @import '../sass/base/base.scss';
 
-
 @import "../sass/utils/mixin.scss";
 @import "../sass/utils/variable.scss";
-
-
 
 @import "../sass/components/Header.scss";
 @import "../sass/components/Banner.scss";

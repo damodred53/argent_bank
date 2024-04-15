@@ -7,6 +7,8 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Authentification from './pages/Authentification';
 import UserPage from './pages/UserPage';
 
+// Récupération de l'id root dans le fichier html et génération 
+//du render principal avec les différentes routes.
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -10,8 +10,6 @@ import { addUser, updateUserStore, getBankUser } from "../../../redux";
 const WelcomingUser = () => {
     const [accounts, setAccounts] = useState([]);
     const [appearrance, setAppearance] = useState(true);
-    /*const [name, setName] = useState('');
-    const [lastName, setLastName] = useState('');*/
     const [newName, setNewName] = useState('');
     const [newLastName, setNewLastName] = useState('');
 
@@ -47,9 +45,10 @@ if (bankUserName) {
     }
 
     useEffect(() => {
-
-        /*dispatch(getBankUser())*/
-
+        /**
+         * Fonction permettant d'aller chercher les données dynamique de l'utilisateur et puis 
+         * de les ajouter au store pour les autres composants.
+         */
         const getNameUser = async () => {
     
             try {
@@ -67,6 +66,10 @@ if (bankUserName) {
     
 
     useEffect(() => {
+        /**
+         * fonction permettant d'aller chercher les données mockées et de les mapper dans le composant 
+         * AccountView
+         */
         const fetchData = async () => {
             const response = await AllServices.getDataBankAccount();
             if (response) {
