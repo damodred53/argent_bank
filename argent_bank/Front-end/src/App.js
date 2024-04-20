@@ -5,6 +5,10 @@ import Footer from './components/footer/Footer.jsx';
 import { Provider } from "react-redux";
 import { store } from './redux.js';
 
+/**
+ * fonction affichant la page principale de site
+ * @returns {JSX.Element}
+ */
 function App() {
   return (
     <Provider store={store}>

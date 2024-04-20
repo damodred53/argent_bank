@@ -1,8 +1,10 @@
 import React from "react";
 
-
+/**
+ * Fonction permettant l'affichage du footer
+ * @returns JSX
+ */
 const Footer = () => {
-
 
     return(
 

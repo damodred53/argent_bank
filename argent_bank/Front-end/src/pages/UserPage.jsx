@@ -6,7 +6,10 @@ import WelcomingUser from "../components/UserPart/welcomingUser/WelcomingUser";
 import { Provider } from "react-redux";
 import { store } from "../redux";
 
-
+/**
+ * Fonction affichant la page du profile de l'utilisateur
+ * @returns {JSX.Element}
+ */
 const UserPage = () => {
 
     

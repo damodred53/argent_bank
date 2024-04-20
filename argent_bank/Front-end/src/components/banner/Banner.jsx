@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * Fonction gérant l'affichage de la bannière de la page d'accueil
+ * @returns {JSX.Element}
+ */
 const Banner  = () => {
 
     return (

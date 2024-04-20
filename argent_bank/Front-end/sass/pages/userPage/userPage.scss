@@ -23,12 +23,12 @@
             color: white;
             box-shadow: none;
             cursor: pointer;
-            width: 5%;
+            width: 6rem;
             padding: 8px;
             font-size: 1rem;
             font-weight: bold;
             margin-top: 1rem;
-
+            white-space: nowrap;
         }
 
         &_wrapper {
@@ -72,7 +72,7 @@
                 flex-direction: row;
                 justify-content: center;
                 column-gap: 2rem;
-
+                white-space: nowrap;
                 button {
                     display: flex;
                     justify-content: center;
@@ -84,9 +84,18 @@
                     color: #7754de;
                     font-size: 1.2rem;
                     cursor: pointer;
+                    
                 }
                 
             }
         }
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .userpage_div_button {
+        width: 6rem;
+        white-space: nowrap;
     }
 }

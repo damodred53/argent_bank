@@ -2,9 +2,13 @@
 import React from "react";
 import Button from "../../button/Button";
 
+/**
+ * Fonction permettant d'afficher les transactions dans la page profile de l'utilisateur
+ * @param {Objet} param0 
+ * @returns 
+ */
 
 const AccountView = ({content}) => {
-
     return (
 
         <article className="accountview">

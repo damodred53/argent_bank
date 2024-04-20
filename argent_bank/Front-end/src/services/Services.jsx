@@ -1,13 +1,15 @@
 
 
 
-
+/**
+ * Fonction permettant d'appeler la base de données locale pour la page d'accueil
+ * @returns 
+ */
 const getDataLandingPage = async () => {
     try {
-        const response = await fetch("./dataBaseLandPage.json"); // Utilisez le chemin vers le fichier JSON
+        const response = await fetch("./dataBase/dataBaseLandPage.json"); 
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             return data;
         } else {
             throw new Error("Impossible de récupérer les données");
@@ -18,7 +20,10 @@ const getDataLandingPage = async () => {
     }
 }
 
-
+/**
+ * Fonction permettant d'appeler les données mockées des transactions des utilisateurs.
+ * @returns 
+ */
 
 const getDataBankAccount = async () => {
     try {
@@ -33,10 +38,14 @@ const getDataBankAccount = async () => {
     }
 }
 
+/**
+ * Fonction permettant de se loguer comme utilisateur connecté
+ * @param {*} data 
+ * @returns 
+ */
 const loginUser = async (data) => {
 
     try {
-
         const postData = await fetch('http://localhost:3001/api/v1/user/login', {
             method : "POST",
             headers: {
@@ -55,6 +64,11 @@ const loginUser = async (data) => {
     }
 }
 
+/**
+ * fonction permettant de récupérer les informations de l'utilisateur enregistré
+ * @param {*} data 
+ * @returns 
+ */
 const getUser = async (data) => {
 
     const getUserToken = localStorage.getItem('token');
@@ -70,6 +84,11 @@ const getUser = async (data) => {
     return await getUser.json()
 }
 
+/**
+ * fonction permettant de modifier l'utilisateur présent dans le store.
+ * @param {*} newName 
+ * @param {*} newLastName 
+ */
 const updateUser = async (newName, newLastName) => {
 
     const getUserToken = localStorage.getItem('token')

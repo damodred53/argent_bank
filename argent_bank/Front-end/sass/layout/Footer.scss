@@ -13,3 +13,13 @@
         font-family: Avenir, Helvetica, Arial, sans-serif;
     }
 }
+
+@media (max-width:920px) {
+    .footer {
+
+        position: relative;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+}

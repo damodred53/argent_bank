@@ -2,7 +2,7 @@
 .form_area {
     position: relative;
     background-color: #12002b;
-    height: 80vh;
+    height: 100vh;
     width: 100%;
 }
 
@@ -12,7 +12,6 @@
     flex-direction: column;
     align-items: center;
     left: 42%;
-    
     box-sizing: border-box;
     background-color: white;
     width:25rem;
@@ -78,3 +77,65 @@
 
     }
 }
+
+@media (max-width: 1000px) {
+
+    .form {
+        left: 35%;
+
+    }
+}
+
+@media (max-width: 1000px) {
+
+    
+
+    .form {
+        left: 25%;
+    }
+}
+
+@media (max-width: 600px) {
+
+   
+
+    .form {
+        left: 20%;
+        width: 20rem;
+    }
+
+    .form_div_wrapper {
+
+        display: flex;
+        flex-direction: column;
+        
+
+        &_label {
+            font-size: 1rem;
+            padding-left: 2rem;
+            margin-top: 1rem;
+        }
+        
+        &_input {
+            width: 80%;
+            height: 2rem;
+            align-self: center;
+        }
+
+        &_remember {
+            font-size: 1rem;
+            padding-left: 2rem;
+        }
+
+        p{
+            font-size: 1rem;
+            padding-left: 2rem;
+        }
+    }
+    .form_button {
+        width: 80%;
+        margin-left: 2rem;
+        font-size: 1.2rem;
+    }
+}
+

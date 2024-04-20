@@ -5,19 +5,22 @@ import Button from "../button/Button";
 import { useNavigate } from "react-router-dom";
 import Services from "../../services/Services.jsx";
 
-
+/**
+ * Fonction permettant la gestion du formulaire
+ * @returns JSX
+ */
 const FormAuthentification = () => {
-
-
 
     const navigate = useNavigate();
 
+    /**
+     * Fonction permettant de gérer l'envoi du formulaire d'authentification
+     * @param {MouseEvent} e 
+     */
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-
         const formData= {}
-    
         const userMail  = document.querySelector('#username').value;
         const password = document.querySelector('#password').value;
 
@@ -37,7 +40,6 @@ const FormAuthentification = () => {
             }
             const data = await postData.json();
             localStorage.setItem('token', data.body.token)
-
 
             navigate('/profile')
         } else {

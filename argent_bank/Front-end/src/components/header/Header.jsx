@@ -8,7 +8,10 @@ import Services from "../../services/Services?jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser } from "../../redux";
 
-
+/**
+ * Fonction permettant de gérer les interactions du header avec le reste du site.
+ * @returns JSX
+ */
 const Header = () => {
 
     const [ isProfilURL, setIsProfileUrl ] = useState(false);
@@ -17,12 +20,12 @@ const Header = () => {
     const location = useLocation();
     const dispatch = useDispatch();
 
-    let firstName3 = ""
+    let firstName = "";
 
     const argentBankUserName = useSelector(state => state.argent_bank_user)
 
     if (argentBankUserName) {
-        firstName3 = argentBankUserName.firstname
+        firstName = argentBankUserName.firstname
     } else {
         console.log('Impossible de récupérer les informations de l\'utilisateur');
     }
@@ -57,8 +60,6 @@ const Header = () => {
     const handleRemoveToken = () => {
         localStorage.removeItem('token');
         dispatch(deleteUser({firstname: "", lastname: ""}))
-        
-        console.log("voici le state une fois déconnecté : ", argentBankUserName)
     }
     
     return (
@@ -70,7 +71,7 @@ const Header = () => {
                 
                 {isProfilURL ? 
                 <div className="header_div_signout">
-                    <span>{firstName3}</span>
+                    <span>{firstName}</span>
                     <div className="header_div_signout">
                         <img className="header_div_signout_icon" src={Signout} alt="icone de déconnexion" /> 
                         <span onClick={handleRemoveToken}>

@@ -6,19 +6,17 @@ import CardsLandingPages from "../card/CardsLandingPages.jsx";
 import Dialogue from "../../assets/icon-chat.png";
 import Billet from "../../assets/icon-money.png";
 import Bouclier from "../../assets/icon-security.png";
-import { useSelector } from "react-redux";
 
+/**
+ * Fonction permettant d'afficher dans la page d'accueil les devises du site
+ * @returns 
+ */
 const Slogans = () => {
 
     const [data, setData] = useState([]);
     const [pictures, setPictures] = useState([]);
 
-    const argentBankUserName2 = useSelector(state => state.argent_bank_user)
-    console.log(argentBankUserName2)
-
     useEffect(() => {
-
-        
 
         const fetchData = async () => {
 
@@ -26,8 +24,6 @@ const Slogans = () => {
                 const response = await ServicesToExport.getDataLandingPage();
                 setData(response)
                 setPictures([Dialogue, Billet, Bouclier])
-                console.log('autre prout')
-
             } catch (error) {
                 console.log('impossible d\'afficher les données de la page d\'accueil', error);
             }

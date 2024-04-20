@@ -3,36 +3,44 @@ import Button from "../../button/Button";
 import AccountView from "../accountView/AccountView";
 import AllServices from "../../../services/Services";
 import { useSelector, useDispatch } from "react-redux";
-import { addUser, updateUserStore, getBankUser } from "../../../redux";
+import { updateUserStore, getBankUser } from "../../../redux";
 
-
-
+/**
+ * Fonction gérant la partie nominale en haut de page de profile
+ * @returns 
+ */
 const WelcomingUser = () => {
     const [accounts, setAccounts] = useState([]);
     const [appearrance, setAppearance] = useState(true);
-    const [newName, setNewName] = useState('');
-    const [newLastName, setNewLastName] = useState('');
 
     const dispatch = useDispatch()
-
     let firstName2 = "";
     let lastName2 = "";
 
     const bankUserName = useSelector(state => state.argent_bank_user);
-        console.log('ceci est le store: ', bankUserName)
 
-if (bankUserName) {
-    firstName2 = bankUserName.firstname
-    lastName2 = bankUserName.lastname
-    console.log(firstName2, lastName2)
-} else {
-    console.log('Impossible de récupérer les informations de l\'utilisateur');
-}
+    if (bankUserName) {
+        firstName2 = bankUserName.firstname
+        lastName2 = bankUserName.lastname
+    } else {
+        console.log('Impossible de récupérer les informations de l\'utilisateur');
+    }
 
+    /**
+     * fonction de faire apparaître/disparaître le formulaire de 
+     * modification du nom
+     * @param {MouseEvent} e 
+     */
     const toggleEditName = (e) => {
         e.preventDefault()
         setAppearance(!appearrance)
     }
+
+    /**
+     * Fonction permettant de gérer l'envoi du formulaire en modifiant le store 
+     * et ensuite la base de données
+     * @param {MouseEvent} e 
+     */
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -53,7 +61,6 @@ if (bankUserName) {
     
             try {
                 const response = await AllServices.getUser()
-
                 if(response) {
                     dispatch(getBankUser(response))
                 }
@@ -62,7 +69,7 @@ if (bankUserName) {
             }
         }
         getNameUser()
-    }, [newName, newLastName, dispatch])
+    }, [dispatch])
     
 
     useEffect(() => {

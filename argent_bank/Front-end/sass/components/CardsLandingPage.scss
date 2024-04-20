@@ -31,3 +31,27 @@
 
 
 }
+
+@media (max-width: 920px) {
+
+   .cardLandingPage {
+    padding-top: 3rem;
+
+    &_icon {
+       width: 6rem;
+       color: #222;
+        
+        margin-bottom: 0.5rem;
+    }
+
+    &_title {
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+    &_paragraph {
+        font-size: 1rem;
+        font-weight: 100;
+    }
+   }
+}
