@@ -38,24 +38,25 @@ Utiliser Redux pour gérer le state de l'application, notamment l’application 
 
 
 Phase 1 : Contraintes fonctionnelles :
-L'utilisateur peut visiter la page d'accueil
-L'utilisateur peut se connecter au système
-Accédez à la page de connexion (/login)
-Remplir le formulaire de connexion avec ses identifiants
-Se connecter à l’application en utilisant des jetons JWT pour l'authentification
-Naviguer avec succès vers la page de profil (/profile)
-L'utilisateur ne peut voir les informations relatives à son propre profil qu'après s'être connecté avec succès
-Accédez à la page de profil (/profile)
-Voir leur prénom sur la page de profil
-Voir les informations de compte bancaire
-L'utilisateur peut modifier le profil (nom et prénom) et conserver les données dans la base de données.
-L'utilisateur peut se déconnecter du système
-Voir le bouton de déconnexion une fois connecté
-Cliquez sur le bouton de déconnexion, déconnecte l’utilisateur et celui-ci revient à la page d'accueil (/)
-
+<ol>
+  <li>L'utilisateur peut visiter la page d'accueil</li>
+  <li>L'utilisateur peut se connecter au système</li>
+  <li>Accédez à la page de connexion (/login)</li>
+  <li>Remplir le formulaire de connexion avec ses identifiants</li>
+  <li>Se connecter à l’application en utilisant des jetons JWT pour l'authentification</li>
+  <li>Naviguer avec succès vers la page de profil (/profile)</li>
+  <li>L'utilisateur ne peut voir les informations relatives à son propre profil qu'après s'être connecté avec succès</li>
+  <li>Accédez à la page de profil (/profile)</li>
+  <li>Voir leur prénom sur la page de profil</li>
+  <li>Voir les informations de compte bancaire</li>
+  <li>L'utilisateur peut modifier le profil (nom et prénom) et conserver les données dans la base de données.</li>
+  <li>L'utilisateur peut se déconnecter du système</li>
+  <li>Voir le bouton de déconnexion une fois connecté</li>
+  <li>Cliquez sur le bouton de déconnexion, déconnecte l’utilisateur et celui-ci revient à la page d'accueil (/)</li>
+</ol>
 
 <h2>Installation : </h2>
-Procédure d'installation :
+<strong>Procédure d'installation :</strong>
 
 Cloner le repository: https://github.com/damodred53/argent_bank
 Cloner le back-end du projet : https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API
