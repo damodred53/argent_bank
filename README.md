@@ -1,7 +1,7 @@
 <h1>ArgentBank 🏦💵 </h1>
 
 
-README en Français - English README
+README en Français
 
 Description FR :
 Ceci est un projet réalisé dans le cadre du programme de formation Développeur Front-end JavaScript React chez OpenClassrooms
