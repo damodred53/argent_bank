@@ -12,6 +12,7 @@ import { deleteUser } from "../../redux";
  * Fonction permettant de gérer les interactions du header avec le reste du site.
  * @returns JSX
  */
+
 const Header = () => {
 
     const [ isProfilURL, setIsProfileUrl ] = useState(false);
@@ -22,10 +23,10 @@ const Header = () => {
 
     let firstName = "";
 
-    const argentBankUserName = useSelector(state => state.argent_bank_user)
+    const argentBankUserName = useSelector(state => state.argent_bank_user);
 
     if (argentBankUserName) {
-        firstName = argentBankUserName.firstname
+        firstName = argentBankUserName.firstname;
     } else {
         console.log('Impossible de récupérer les informations de l\'utilisateur');
     }
@@ -35,9 +36,9 @@ const Header = () => {
             const checkUrl = () => {
 
                 if (location.pathname.includes('/profile')) {
-                    setIsProfileUrl(true)
+                    setIsProfileUrl(true);
                 } else {
-                    setIsProfileUrl(false)
+                    setIsProfileUrl(false);
                 }
             }
 
@@ -46,9 +47,9 @@ const Header = () => {
                 if (localStorage.getItem('token') === null) {
                     return
                 } else {
-                    const fetchDataUser = await Services.getUser()
+                    const fetchDataUser = await Services.getUser();
                 if (fetchDataUser) {
-                    setNameUser(fetchDataUser.body.firstName)
+                    setNameUser(fetchDataUser.body.firstName);
                 }
                 }
             }
@@ -59,7 +60,7 @@ const Header = () => {
 
     const handleRemoveToken = () => {
         localStorage.removeItem('token');
-        dispatch(deleteUser({firstname: "", lastname: ""}))
+        dispatch(deleteUser({firstname: "", lastname: ""}));
     }
     
     return (

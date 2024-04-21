@@ -9,19 +9,20 @@ import { updateUserStore, getBankUser } from "../../../redux";
  * Fonction gérant la partie nominale en haut de page de profile
  * @returns 
  */
+
 const WelcomingUser = () => {
     const [accounts, setAccounts] = useState([]);
     const [appearrance, setAppearance] = useState(true);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     let firstName2 = "";
     let lastName2 = "";
 
     const bankUserName = useSelector(state => state.argent_bank_user);
 
     if (bankUserName) {
-        firstName2 = bankUserName.firstname
-        lastName2 = bankUserName.lastname
+        firstName2 = bankUserName.firstname;
+        lastName2 = bankUserName.lastname;
     } else {
         console.log('Impossible de récupérer les informations de l\'utilisateur');
     }
@@ -32,8 +33,8 @@ const WelcomingUser = () => {
      * @param {MouseEvent} e 
      */
     const toggleEditName = (e) => {
-        e.preventDefault()
-        setAppearance(!appearrance)
+        e.preventDefault();
+        setAppearance(!appearrance);
     }
 
     /**
@@ -43,12 +44,12 @@ const WelcomingUser = () => {
      */
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
     
         const newName = document.querySelector('#newname').value;
         const newLastName = document.querySelector('#newlastname').value;
         
-        dispatch(updateUserStore({ firstName: newName, lastName: newLastName })) 
+        dispatch(updateUserStore({ firstName: newName, lastName: newLastName }));
         AllServices.updateUser(newName, newLastName);
     }
 
@@ -73,14 +74,16 @@ const WelcomingUser = () => {
     
 
     useEffect(() => {
+
         /**
          * fonction permettant d'aller chercher les données mockées et de les mapper dans le composant 
          * AccountView
          */
+        
         const fetchData = async () => {
             const response = await AllServices.getDataBankAccount();
             if (response) {
-               setAccounts(response)
+               setAccounts(response);
             }
         };
         fetchData();

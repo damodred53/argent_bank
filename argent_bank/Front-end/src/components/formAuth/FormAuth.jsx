@@ -20,14 +20,14 @@ const FormAuthentification = () => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        const formData= {}
+        const formData= {};
         const userMail  = document.querySelector('#username').value;
         const password = document.querySelector('#password').value;
 
-        formData.email = userMail
-        formData.password = password
+        formData.email = userMail;
+        formData.password = password;
 
-        const postData = await Services.loginUser(formData)
+        const postData = await Services.loginUser(formData);
         
         const nameError = document.querySelector('.form_div_wrapper_username_error');
         const lastNameError = document.querySelector('.form_div_wrapper_password_error');
@@ -39,9 +39,9 @@ const FormAuthentification = () => {
                 lastNameError.style.display = "none";
             }
             const data = await postData.json();
-            localStorage.setItem('token', data.body.token)
+            localStorage.setItem('token', data.body.token);
 
-            navigate('/profile')
+            navigate('/profile');
         } else {
             nameError.style.display = "block";
             lastNameError.style.display = "block";

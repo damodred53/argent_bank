@@ -10,9 +10,9 @@ import { store } from "../redux";
  * Fonction affichant la page du profile de l'utilisateur
  * @returns {JSX.Element}
  */
+
 const UserPage = () => {
 
-    
     return (
         <Provider store={store}>
         <div>
@@ -23,4 +23,5 @@ const UserPage = () => {
         </Provider>
     )
 }
+
 export default UserPage;

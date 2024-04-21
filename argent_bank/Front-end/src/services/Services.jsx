@@ -1,10 +1,9 @@
 
-
-
 /**
  * Fonction permettant d'appeler la base de données locale pour la page d'accueil
  * @returns 
  */
+
 const getDataLandingPage = async () => {
     try {
         const response = await fetch("./dataBase/dataBaseLandPage.json"); 
@@ -69,7 +68,7 @@ const loginUser = async (data) => {
  * @param {*} data 
  * @returns 
  */
-const getUser = async (data) => {
+const getUser = async () => {
 
     const getUserToken = localStorage.getItem('token');
 
@@ -91,7 +90,7 @@ const getUser = async (data) => {
  */
 const updateUser = async (newName, newLastName) => {
 
-    const getUserToken = localStorage.getItem('token')
+    const getUserToken = localStorage.getItem('token');
 
         const response = await fetch('http://localhost:3001/api/v1/user/profile', {
             method: "PUT",

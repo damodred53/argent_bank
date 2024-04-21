@@ -18,7 +18,6 @@ const AccountView = ({content}) => {
                 <p className="accountview_div_type">{content.type}</p>
             </div>
             < Button className="accountview_div_button" textContent="View transactions" />
-            
         </article>
     )
 }

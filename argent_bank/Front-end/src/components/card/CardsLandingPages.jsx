@@ -9,6 +9,7 @@ import React from "react";
  * @param {string[]} param0.pictures - Les images associées à chaque carte.
  * @returns {JSX.Element} - La représentation JSX de la carte.
  */
+
 const CardsLandingPages = ({index, data, pictures}) => {
     return (
         <article className="cardLandingPage">

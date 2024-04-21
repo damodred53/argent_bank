@@ -11,6 +11,7 @@ import Bouclier from "../../assets/icon-security.png";
  * Fonction permettant d'afficher dans la page d'accueil les devises du site
  * @returns 
  */
+
 const Slogans = () => {
 
     const [data, setData] = useState([]);
@@ -22,8 +23,8 @@ const Slogans = () => {
 
             try {
                 const response = await ServicesToExport.getDataLandingPage();
-                setData(response)
-                setPictures([Dialogue, Billet, Bouclier])
+                setData(response);
+                setPictures([Dialogue, Billet, Bouclier]);
             } catch (error) {
                 console.log('impossible d\'afficher les données de la page d\'accueil', error);
             }
@@ -31,9 +32,7 @@ const Slogans = () => {
         }
         fetchData()
 
-}, [])
-
-
+    }, [])
 
 
     return (
@@ -41,7 +40,6 @@ const Slogans = () => {
             return <CardsLandingPages key={index} index={index} data={item} pictures={pictures} />
         }))}
         </div>
-
     )
 }
 
