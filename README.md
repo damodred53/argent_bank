@@ -59,6 +59,7 @@ Procédure d'installation :
 
 Cloner le repository: https://github.com/damodred53/argent_bank
 Cloner le back-end du projet : https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API
+Ou bien celui présent dans le projet sur cette page dans la aprtie back-end spécifiquement
 Installation et lancement du Back-end :
 Allez dans le dossier "Back-end" :
 
